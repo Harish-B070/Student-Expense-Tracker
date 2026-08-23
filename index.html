@@ -186,6 +186,23 @@
             background-color: #162d6b;
         }
 
+        /* MESSAGE */
+
+        #message {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            min-height: 20px;
+        }
+
+        .success {
+            color: #16a34a;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
         /* TABLE */
 
         .table-container {
@@ -503,6 +520,11 @@
                     Add Expense
                 </button>
 
+
+                <!-- MESSAGE -->
+
+                <p id="message"></p>
+
             </div>
 
 
@@ -651,6 +673,33 @@
         };
 
 
+        /* SHOW MESSAGE */
+
+        function showMessage(text, type)
+        {
+
+            let message =
+                document.getElementById("message");
+
+
+            message.innerHTML = text;
+
+
+            message.className = type;
+
+
+            setTimeout(function()
+            {
+
+                message.innerHTML = "";
+
+                message.className = "";
+
+            }, 2500);
+
+        }
+
+
         /* SET BUDGET */
 
         function setBudget()
@@ -663,8 +712,9 @@
             if(budgetValue == "")
             {
 
-                alert(
-                    "Please enter your monthly budget."
+                showMessage(
+                    "Please enter your monthly budget.",
+                    "error"
                 );
 
                 return;
@@ -678,8 +728,9 @@
             if(budget <= 0)
             {
 
-                alert(
-                    "Budget must be greater than 0."
+                showMessage(
+                    "Budget must be greater than 0.",
+                    "error"
                 );
 
                 return;
@@ -701,8 +752,9 @@
             updatePage();
 
 
-            alert(
-                "Monthly budget updated successfully!"
+            showMessage(
+                "Monthly budget updated successfully!",
+                "success"
             );
 
         }
@@ -716,8 +768,9 @@
             if(budget == 0)
             {
 
-                alert(
-                    "Please set your monthly budget first."
+                showMessage(
+                    "Please set your monthly budget first.",
+                    "error"
                 );
 
                 return;
@@ -749,8 +802,9 @@
             )
             {
 
-                alert(
-                    "Please enter all expense details."
+                showMessage(
+                    "Please enter all expense details.",
+                    "error"
                 );
 
                 return;
@@ -764,8 +818,9 @@
             if(amount <= 0)
             {
 
-                alert(
-                    "Amount must be greater than 0."
+                showMessage(
+                    "Amount must be greater than 0.",
+                    "error"
                 );
 
                 return;
@@ -814,8 +869,9 @@
             ).value = "";
 
 
-            alert(
-                "Expense added successfully!"
+            showMessage(
+                "Expense added successfully!",
+                "success"
             );
 
         }
@@ -833,6 +889,12 @@
 
 
             updatePage();
+
+
+            showMessage(
+                "Expense deleted successfully!",
+                "success"
+            );
 
         }
 
