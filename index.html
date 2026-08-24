@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Student Expense Tracker</title>
 
@@ -18,337 +15,312 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background: #09090f;
-            color: #ffffff;
+            background: #080b16;
+            color: #f1f5f9;
         }
 
-        /* ================= NAVBAR ================= */
+        /* NAVBAR */
 
         .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
+            background: rgba(12, 16, 32, 0.95);
+            border-bottom: 1px solid #242b45;
+            color: white;
+            padding: 18px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-
-            padding: 18px 7%;
-
-            background: rgba(9, 9, 15, 0.92);
-            backdrop-filter: blur(15px);
-
-            border-bottom: 1px solid #22222f;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
-        }
-
-        .logo span {
-            color: #a855f7;
+            color: #ffffff;
         }
 
         .navbar a {
-            color: #aaaabb;
+            color: #b8c1d9;
             text-decoration: none;
-
             margin-left: 25px;
-
-            font-size: 14px;
-            font-weight: bold;
-
             transition: 0.3s;
         }
 
         .navbar a:hover {
-            color: #c084fc;
+            color: #8b5cf6;
         }
 
-        /* ================= HERO ================= */
+        /* HERO */
 
         .hero {
-            padding: 75px 7%;
-
             background:
                 radial-gradient(
-                    circle at 20% 30%,
-                    rgba(168, 85, 247, 0.18),
-                    transparent 30%
+                    circle at top right,
+                    #35206b 0%,
+                    transparent 35%
                 ),
-                radial-gradient(
-                    circle at 80% 70%,
-                    rgba(34, 197, 94, 0.10),
-                    transparent 30%
-                ),
-                #09090f;
+                linear-gradient(
+                    135deg,
+                    #10162b,
+                    #080b16
+                );
 
-            border-bottom: 1px solid #22222f;
-        }
-
-        .hero small {
-            color: #a855f7;
-            font-weight: bold;
-            letter-spacing: 2px;
+            padding: 65px 7%;
+            border-bottom: 1px solid #20263c;
         }
 
         .hero h1 {
-            margin-top: 12px;
-
-            font-size: clamp(35px, 6vw, 65px);
-
-            line-height: 1.1;
-
-            max-width: 800px;
-        }
-
-        .hero h1 span {
-            color: #c084fc;
+            font-size: 38px;
+            color: #ffffff;
+            margin-bottom: 12px;
         }
 
         .hero p {
-            margin-top: 18px;
-
-            color: #9292a6;
-
+            color: #9da8c3;
             font-size: 17px;
-
-            max-width: 650px;
         }
 
-        /* ================= MAIN ================= */
+        /* MAIN */
 
         .container {
             width: 86%;
             max-width: 1200px;
-
-            margin: 40px auto;
+            margin: 35px auto;
         }
 
-        /* ================= DASHBOARD ================= */
+        /* DASHBOARD */
 
         .dashboard {
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .card {
-            position: relative;
+            background:
+                linear-gradient(
+                    145deg,
+                    #131a30,
+                    #0d1222
+                );
 
-            background: #11111a;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #252d48;
 
-            padding: 28px;
-
-            border: 1px solid #252536;
-
-            border-radius: 20px;
-
-            overflow: hidden;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.35);
 
             transition: 0.3s;
         }
 
-        .card::before {
-            content: "";
-
-            position: absolute;
-
-            width: 100px;
-            height: 100px;
-
-            background: #a855f7;
-
-            filter: blur(70px);
-
-            opacity: 0.12;
-
-            right: -30px;
-            top: -30px;
-        }
-
         .card:hover {
             transform: translateY(-5px);
-
-            border-color: #6b21a8;
+            border-color: #6d4aff;
 
             box-shadow:
-                0 15px 40px rgba(0,0,0,0.4);
+                0 12px 35px rgba(
+                    109,
+                    74,
+                    255,
+                    0.15
+                );
         }
 
         .card h3 {
-            color: #858599;
-
-            font-size: 13px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
+            color: #8f9ab5;
+            font-size: 15px;
+            margin-bottom: 12px;
         }
 
         .card h2 {
-            margin-top: 15px;
-
-            font-size: 32px;
-
-            color: #ffffff;
+            color: #a78bfa;
+            font-size: 30px;
+            margin-top: 12px;
         }
 
-        #remaining {
-            color: #22c55e;
-        }
+        /* BUDGET */
 
-        /* ================= INPUT ================= */
-
-        input,
-        select {
+        .budget-input {
             width: 100%;
+            padding: 12px;
 
-            padding: 13px 14px;
-
-            margin-top: 5px;
-
-            background: #0b0b13;
-
+            background: #0a0f1f;
             color: white;
 
-            border: 1px solid #303044;
+            border: 1px solid #303954;
+            border-radius: 8px;
 
-            border-radius: 10px;
+            font-size: 14px;
+        }
 
+        .budget-input::placeholder {
+            color: #68738d;
+        }
+
+        .budget-input:focus {
             outline: none;
+            border-color: #8b5cf6;
         }
 
-        input:focus,
-        select:focus {
-            border-color: #a855f7;
-
-            box-shadow:
-                0 0 0 3px rgba(168,85,247,0.12);
-        }
-
-        select option {
-            background: #11111a;
-        }
-
-        /* ================= BUTTONS ================= */
-
-        .budget-button,
-        .add-button {
+        .budget-button {
             width: 100%;
-
-            padding: 13px;
-
-            margin-top: 12px;
-
-            border: none;
-
-            border-radius: 10px;
+            padding: 11px;
+            margin-top: 10px;
 
             background:
                 linear-gradient(
                     135deg,
                     #7c3aed,
-                    #a855f7
+                    #4f46e5
                 );
 
             color: white;
-
-            font-weight: bold;
+            border: none;
+            border-radius: 8px;
 
             cursor: pointer;
+            font-weight: bold;
 
             transition: 0.3s;
         }
 
-        .budget-button:hover,
-        .add-button:hover {
+        .budget-button:hover {
             transform: translateY(-2px);
 
             box-shadow:
-                0 8px 25px rgba(168,85,247,0.3);
+                0 8px 20px rgba(
+                    124,
+                    58,
+                    237,
+                    0.35
+                );
         }
 
-        /* ================= CONTENT ================= */
+        /* CONTENT */
 
         .content {
             display: grid;
-
-            grid-template-columns:
-                350px 1fr;
-
+            grid-template-columns: 350px 1fr;
             gap: 25px;
         }
 
         .box {
-            background: #11111a;
+            background:
+                linear-gradient(
+                    145deg,
+                    #131a30,
+                    #0d1222
+                );
 
-            padding: 28px;
-
-            border: 1px solid #252536;
-
-            border-radius: 20px;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #252d48;
 
             box-shadow:
-                0 10px 30px rgba(0,0,0,0.2);
+                0 10px 30px rgba(
+                    0,
+                    0,
+                    0,
+                    0.3
+                );
         }
 
         .box h2 {
-            color: white;
-
             margin-bottom: 20px;
-
-            font-size: 22px;
+            color: #c4b5fd;
         }
 
-        /* ================= FORM ================= */
+        /* FORM */
 
         label {
             display: block;
 
             margin-top: 15px;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
 
-            color: #aaaabb;
-
-            font-size: 13px;
-
+            color: #b8c1d9;
             font-weight: bold;
         }
 
-        /* ================= MESSAGE ================= */
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
 
-        #message {
-            text-align: center;
+            background: #0a0f1f;
+            color: #f1f5f9;
 
-            min-height: 20px;
+            border: 1px solid #303954;
+            border-radius: 8px;
 
-            margin-top: 15px;
+            font-size: 14px;
+        }
 
+        select option {
+            background: #10162b;
+            color: white;
+        }
+
+        input::placeholder {
+            color: #68738d;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+
+            border-color: #8b5cf6;
+
+            box-shadow:
+                0 0 0 3px rgba(
+                    139,
+                    92,
+                    246,
+                    0.12
+                );
+        }
+
+        .add-button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #4f46e5
+                );
+
+            color: white;
+            border: none;
+            border-radius: 8px;
+
+            font-size: 15px;
             font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .success {
-            color: #22c55e;
+        .add-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 25px rgba(
+                    139,
+                    92,
+                    246,
+                    0.35
+                );
         }
 
-        .error {
-            color: #ef4444;
-        }
-
-        /* ================= TABLE ================= */
+        /* TABLE */
 
         .table-container {
             overflow-x: auto;
@@ -356,118 +328,128 @@
 
         table {
             width: 100%;
-
             border-collapse: collapse;
         }
 
-        th {
-            background: #191924;
-
-            color: #c084fc;
-
+        th,
+        td {
             padding: 14px;
-
+            border-bottom: 1px solid #252d48;
             text-align: left;
+        }
 
-            font-size: 13px;
+        th {
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
         }
 
         td {
-            padding: 14px;
-
-            color: #b8b8c8;
-
-            border-bottom:
-                1px solid #242432;
-
-            font-size: 14px;
+            color: #cbd5e1;
         }
 
-        tr:hover td {
-            background: #15151f;
+        tr:hover {
+            background-color: #171e34;
         }
+
+        /* DELETE BUTTON */
 
         .delete-button {
-            background: #2a1014;
+            background: #ef4444;
+            color: white;
 
-            color: #f87171;
-
-            border: 1px solid #4b1b21;
+            border: none;
 
             padding: 7px 12px;
-
-            border-radius: 8px;
+            border-radius: 6px;
 
             cursor: pointer;
-
-            font-weight: bold;
+            transition: 0.3s;
         }
 
         .delete-button:hover {
-            background: #45151b;
+            background: #dc2626;
+            transform: scale(1.05);
         }
 
-        /* ================= CHART ================= */
+        /* CHART */
 
         .chart-box {
-            margin-top: 25px;
+            margin-top: 30px;
         }
 
         .chart-container {
             width: 100%;
-
             max-width: 600px;
-
             height: 420px;
-
             margin: auto;
         }
 
         #expenseChart {
             width: 100% !important;
-
             height: 100% !important;
         }
 
-        /* ================= EMPTY ================= */
+        /* EMPTY MESSAGE */
 
         .empty-message {
             text-align: center;
-
-            padding: 30px;
-
-            color: #77778a;
+            padding: 25px;
+            color: #68738d;
         }
 
-        /* ================= ABOUT ================= */
-
-        #about {
-            margin-top: 40px;
-        }
-
-        #about h1 {
-            font-size: 35px;
-        }
-
-        /* ================= FOOTER ================= */
+        /* FOOTER */
 
         footer {
-            margin-top: 60px;
+            margin-top: 50px;
 
-            padding: 30px;
+            background: #0c1020;
+
+            color: #7f8aa5;
 
             text-align: center;
 
-            background: #06060b;
+            padding: 22px;
 
-            color: #686878;
-
-            border-top: 1px solid #20202c;
+            border-top: 1px solid #242b45;
         }
 
-        /* ================= RESPONSIVE ================= */
+        /* RESPONSIVE */
 
-        @media (max-width: 900px) {
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 18px 4%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .navbar a {
+                margin-left: 8px;
+                margin-right: 8px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 45px 5%;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .container {
+                width: 92%;
+            }
 
             .dashboard {
                 grid-template-columns: 1fr;
@@ -477,51 +459,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .navbar {
-                padding: 15px 5%;
-            }
-
-            .navbar a {
-                margin-left: 12px;
-                font-size: 12px;
-            }
-
-        }
-
-        @media (max-width: 650px) {
-
-            .navbar {
-                flex-direction: column;
-
-                gap: 15px;
-            }
-
-            .navbar a {
-                margin: 0 7px;
-            }
-
-            .hero {
-                padding: 55px 5%;
-            }
-
-            .container {
-                width: 92%;
-            }
-
-            .box,
-            .card {
-                padding: 20px;
-            }
-
             .chart-container {
                 height: 320px;
             }
 
-            th,
-            td {
-                padding: 10px;
-
-                font-size: 12px;
+            .box {
+                padding: 20px;
             }
 
         }
@@ -530,16 +473,15 @@
 
 </head>
 
-
 <body>
 
 
-    <!-- ================= NAVBAR ================= -->
+    <!-- NAVBAR -->
 
     <div class="navbar">
 
         <div class="logo">
-            💰 <span>Expense</span> Tracker
+            💰 Student Expense Tracker
         </div>
 
         <div>
@@ -563,38 +505,33 @@
     </div>
 
 
-    <!-- ================= HERO ================= -->
+    <!-- HERO -->
 
     <div class="hero">
 
-        <small>
-            PERSONAL FINANCE DASHBOARD
-        </small>
-
         <h1>
-            Take Control of Your
-            <span>Money.</span>
+            Manage Your Expenses Easily
         </h1>
 
         <p>
-            Track your daily spending, manage your monthly
-            budget and understand where your money goes.
+            Track your daily spending and manage your
+            student budget smartly.
         </p>
 
     </div>
 
 
-    <!-- ================= MAIN ================= -->
+    <!-- MAIN -->
 
     <div class="container">
 
 
-        <!-- ================= DASHBOARD ================= -->
+        <!-- DASHBOARD -->
 
         <div class="dashboard">
 
 
-            <!-- BUDGET -->
+            <!-- MONTHLY BUDGET -->
 
             <div class="card">
 
@@ -605,6 +542,7 @@
                 <input
                     type="number"
                     id="budgetInput"
+                    class="budget-input"
                     placeholder="Enter your budget"
                 >
 
@@ -622,7 +560,7 @@
             </div>
 
 
-            <!-- TOTAL -->
+            <!-- TOTAL SPENT -->
 
             <div class="card">
 
@@ -655,7 +593,7 @@
         </div>
 
 
-        <!-- ================= FORM + HISTORY ================= -->
+        <!-- FORM + HISTORY -->
 
         <div class="content">
 
@@ -676,7 +614,7 @@
                 <input
                     type="number"
                     id="amount"
-                    placeholder="₹ Enter amount"
+                    placeholder="Enter amount"
                 >
 
 
@@ -690,27 +628,27 @@
                         Select category
                     </option>
 
-                    <option>
+                    <option value="Food">
                         Food
                     </option>
 
-                    <option>
+                    <option value="Travel">
                         Travel
                     </option>
 
-                    <option>
+                    <option value="Education">
                         Education
                     </option>
 
-                    <option>
+                    <option value="Shopping">
                         Shopping
                     </option>
 
-                    <option>
+                    <option value="Entertainment">
                         Entertainment
                     </option>
 
-                    <option>
+                    <option value="Other">
                         Other
                     </option>
 
@@ -734,7 +672,7 @@
                 <input
                     type="text"
                     id="description"
-                    placeholder="What did you spend on?"
+                    placeholder="Enter description"
                 >
 
 
@@ -744,9 +682,6 @@
                 >
                     + Add Expense
                 </button>
-
-
-                <p id="message"></p>
 
             </div>
 
@@ -810,7 +745,7 @@
         </div>
 
 
-        <!-- ================= CHART ================= -->
+        <!-- SPENDING ANALYSIS -->
 
         <div
             class="box chart-box"
@@ -823,7 +758,8 @@
 
             <div class="chart-container">
 
-                <canvas id="expenseChart"></canvas>
+                <canvas id="expenseChart">
+                </canvas>
 
             </div>
 
@@ -833,30 +769,26 @@
     </div>
 
 
-    <!-- ================= ABOUT ================= -->
+    <!-- ABOUT -->
 
     <div
         class="hero"
         id="about"
     >
 
-        <small>
-            ABOUT THE PROJECT
-        </small>
-
         <h1>
-            Student Expense Tracker
+            About Student Expense Tracker
         </h1>
 
         <p>
             This website helps students track their daily
-            expenses and manage their monthly budget easily.
+            expenses and manage their monthly budget.
         </p>
 
     </div>
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -867,7 +799,7 @@
     </footer>
 
 
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- JAVASCRIPT -->
 
     <script>
 
@@ -878,16 +810,21 @@
         let expenseChart = null;
 
 
-        /* ================= LOAD SAVED DATA ================= */
+        /* LOAD SAVED DATA */
 
         window.onload = function()
         {
 
             let savedBudget =
-                localStorage.getItem("studentBudget");
+                localStorage.getItem(
+                    "studentBudget"
+                );
+
 
             let savedExpenses =
-                localStorage.getItem("studentExpenses");
+                localStorage.getItem(
+                    "studentExpenses"
+                );
 
 
             if(savedBudget != null)
@@ -898,7 +835,8 @@
 
             if(savedExpenses != null)
             {
-                expenses = JSON.parse(savedExpenses);
+                expenses =
+                    JSON.parse(savedExpenses);
             }
 
 
@@ -907,46 +845,22 @@
         };
 
 
-        /* ================= MESSAGE ================= */
-
-        function showMessage(text, type)
-        {
-
-            let message =
-                document.getElementById("message");
-
-            message.innerHTML = text;
-
-            message.className = type;
-
-
-            setTimeout(function()
-            {
-
-                message.innerHTML = "";
-
-                message.className = "";
-
-            }, 2500);
-
-        }
-
-
-        /* ================= SET BUDGET ================= */
+        /* SET BUDGET */
 
         function setBudget()
         {
 
             let budgetValue =
-                document.getElementById("budgetInput").value;
+                document.getElementById(
+                    "budgetInput"
+                ).value;
 
 
             if(budgetValue == "")
             {
 
-                showMessage(
-                    "Please enter your monthly budget.",
-                    "error"
+                alert(
+                    "Please enter your monthly budget."
                 );
 
                 return;
@@ -960,9 +874,8 @@
             if(budget <= 0)
             {
 
-                showMessage(
-                    "Budget must be greater than 0.",
-                    "error"
+                alert(
+                    "Budget must be greater than 0."
                 );
 
                 return;
@@ -984,15 +897,14 @@
             updatePage();
 
 
-            showMessage(
-                "Monthly budget updated successfully!",
-                "success"
+            alert(
+                "Monthly budget updated successfully!"
             );
 
         }
 
 
-        /* ================= ADD EXPENSE ================= */
+        /* ADD EXPENSE */
 
         function addExpense()
         {
@@ -1000,9 +912,8 @@
             if(budget == 0)
             {
 
-                showMessage(
-                    "Please set your monthly budget first.",
-                    "error"
+                alert(
+                    "Please set your monthly budget first."
                 );
 
                 return;
@@ -1011,16 +922,27 @@
 
 
             let amount =
-                document.getElementById("amount").value;
+                document.getElementById(
+                    "amount"
+                ).value;
+
 
             let category =
-                document.getElementById("category").value;
+                document.getElementById(
+                    "category"
+                ).value;
+
 
             let date =
-                document.getElementById("date").value;
+                document.getElementById(
+                    "date"
+                ).value;
+
 
             let description =
-                document.getElementById("description").value;
+                document.getElementById(
+                    "description"
+                ).value;
 
 
             if(
@@ -1031,9 +953,8 @@
             )
             {
 
-                showMessage(
-                    "Please enter all expense details.",
-                    "error"
+                alert(
+                    "Please enter all expense details."
                 );
 
                 return;
@@ -1047,9 +968,8 @@
             if(amount <= 0)
             {
 
-                showMessage(
-                    "Amount must be greater than 0.",
-                    "error"
+                alert(
+                    "Amount must be greater than 0."
                 );
 
                 return;
@@ -1098,34 +1018,30 @@
             ).value = "";
 
 
-            showMessage(
-                "Expense added successfully!",
-                "success"
+            alert(
+                "Expense added successfully!"
             );
 
         }
 
 
-        /* ================= DELETE EXPENSE ================= */
+        /* DELETE EXPENSE */
 
         function deleteExpense(index)
         {
 
             expenses.splice(index, 1);
 
+
             saveData();
 
-            updatePage();
 
-            showMessage(
-                "Expense deleted successfully!",
-                "success"
-            );
+            updatePage();
 
         }
 
 
-        /* ================= SAVE DATA ================= */
+        /* SAVE DATA */
 
         function saveData()
         {
@@ -1144,7 +1060,7 @@
         }
 
 
-        /* ================= UPDATE PAGE ================= */
+        /* UPDATE PAGE */
 
         function updatePage()
         {
@@ -1152,11 +1068,16 @@
             let totalSpent = 0;
 
 
-            for(let i = 0; i < expenses.length; i++)
+            for(
+                let i = 0;
+                i < expenses.length;
+                i++
+            )
             {
 
                 totalSpent =
-                    totalSpent + expenses[i].amount;
+                    totalSpent +
+                    expenses[i].amount;
 
             }
 
@@ -1199,7 +1120,7 @@
                 document.getElementById(
                     "remaining"
                 ).style.color =
-                    "#22c55e";
+                    "#a78bfa";
 
             }
 
@@ -1211,7 +1132,7 @@
         }
 
 
-        /* ================= UPDATE TABLE ================= */
+        /* UPDATE TABLE */
 
         function updateTable()
         {
@@ -1240,7 +1161,11 @@
             }
 
 
-            for(let i = 0; i < expenses.length; i++)
+            for(
+                let i = 0;
+                i < expenses.length;
+                i++
+            )
             {
 
                 let row =
@@ -1260,21 +1185,24 @@
 
 
                 row.insertCell(3).innerHTML =
-                    "₹" + expenses[i].amount;
+                    "₹" +
+                    expenses[i].amount;
 
 
                 row.insertCell(4).innerHTML =
                     '<button class="delete-button" ' +
                     'onclick="deleteExpense(' +
                     i +
-                    ')">Delete</button>';
+                    ')">' +
+                    'Delete' +
+                    '</button>';
 
             }
 
         }
 
 
-        /* ================= PIE CHART ================= */
+        /* UPDATE PIE CHART */
 
         function updateChart()
         {
@@ -1292,37 +1220,62 @@
             let other = 0;
 
 
-            for(let i = 0; i < expenses.length; i++)
+            for(
+                let i = 0;
+                i < expenses.length;
+                i++
+            )
             {
 
-                if(expenses[i].category == "Food")
+                if(
+                    expenses[i].category ==
+                    "Food"
+                )
                 {
-                    food += expenses[i].amount;
+                    food +=
+                        expenses[i].amount;
                 }
 
-                else if(expenses[i].category == "Travel")
+                else if(
+                    expenses[i].category ==
+                    "Travel"
+                )
                 {
-                    travel += expenses[i].amount;
+                    travel +=
+                        expenses[i].amount;
                 }
 
-                else if(expenses[i].category == "Education")
+                else if(
+                    expenses[i].category ==
+                    "Education"
+                )
                 {
-                    education += expenses[i].amount;
+                    education +=
+                        expenses[i].amount;
                 }
 
-                else if(expenses[i].category == "Shopping")
+                else if(
+                    expenses[i].category ==
+                    "Shopping"
+                )
                 {
-                    shopping += expenses[i].amount;
+                    shopping +=
+                        expenses[i].amount;
                 }
 
-                else if(expenses[i].category == "Entertainment")
+                else if(
+                    expenses[i].category ==
+                    "Entertainment"
+                )
                 {
-                    entertainment += expenses[i].amount;
+                    entertainment +=
+                        expenses[i].amount;
                 }
 
                 else
                 {
-                    other += expenses[i].amount;
+                    other +=
+                        expenses[i].amount;
                 }
 
             }
@@ -1355,7 +1308,7 @@
                 new Chart(
                     ctx,
                     {
-                        type: "doughnut",
+                        type: "pie",
 
                         data:
                         {
@@ -1376,16 +1329,16 @@
 
                                     backgroundColor:
                                     [
-                                        "#a855f7",
-                                        "#22c55e",
+                                        "#ec4899",
                                         "#3b82f6",
                                         "#f59e0b",
-                                        "#ec4899",
-                                        "#64748b"
+                                        "#14b8a6",
+                                        "#8b5cf6",
+                                        "#f97316"
                                     ],
 
                                     borderColor:
-                                        "#11111a",
+                                        "#10162b",
 
                                     borderWidth: 4
                                 }
@@ -1398,8 +1351,6 @@
 
                             maintainAspectRatio: false,
 
-                            cutout: "65%",
-
                             plugins:
                             {
                                 legend:
@@ -1408,9 +1359,14 @@
 
                                     labels:
                                     {
-                                        color: "#b8b8c8",
+                                        color: "#cbd5e1",
 
-                                        padding: 18
+                                        padding: 18,
+
+                                        font:
+                                        {
+                                            size: 13
+                                        }
                                     }
                                 },
 
@@ -1441,7 +1397,6 @@
         }
 
     </script>
-
 
 </body>
 </html>
