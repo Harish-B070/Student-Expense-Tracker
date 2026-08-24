@@ -4,7 +4,6 @@
 
     <title>Student Expense Tracker</title>
 
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -395,7 +394,7 @@
 
         .chart-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 850px;
 
             height: 420px;
 
@@ -485,16 +484,13 @@
             table {
                 min-width: 650px;
             }
-
         }
 
     </style>
 
 </head>
 
-
 <body>
-
 
     <!-- NAVBAR -->
 
@@ -547,11 +543,9 @@
 
     <div class="container">
 
-
         <!-- DASHBOARD -->
 
         <div class="dashboard">
-
 
             <!-- MONTHLY BUDGET -->
 
@@ -618,7 +612,6 @@
         <!-- FORM + HISTORY -->
 
         <div class="content">
-
 
             <!-- ADD EXPENSE -->
 
@@ -755,7 +748,6 @@
 
 
                         <tbody id="expenseList">
-
                         </tbody>
 
                     </table>
@@ -780,8 +772,7 @@
 
             <div class="chart-container">
 
-                <canvas id="expenseChart">
-                </canvas>
+                <canvas id="expenseChart"></canvas>
 
             </div>
 
@@ -825,7 +816,6 @@
 
     <script>
 
-
         /* STARTING VALUES */
 
         let budget = 0;
@@ -845,7 +835,6 @@
                     "studentBudget"
                 );
 
-
             let savedExpenses =
                 localStorage.getItem(
                     "studentExpenses"
@@ -854,8 +843,7 @@
 
             if(savedBudget !== null)
             {
-                budget =
-                    Number(savedBudget);
+                budget = Number(savedBudget);
             }
 
 
@@ -977,11 +965,8 @@
             let expense =
             {
                 amount: amount,
-
                 category: category,
-
                 date: date,
-
                 description: description
             };
 
@@ -990,7 +975,6 @@
 
 
             saveData();
-
 
             updatePage();
 
@@ -1029,7 +1013,6 @@
 
 
             saveData();
-
 
             updatePage();
 
@@ -1111,7 +1094,6 @@
                     "#ef4444";
 
             }
-
             else
             {
 
@@ -1124,7 +1106,6 @@
 
 
             updateTable();
-
 
             updateChart();
 
@@ -1196,17 +1177,11 @@
                 row.insertCell(4).innerHTML =
 
                     '<button ' +
-
                     'class="delete-button" ' +
-
                     'onclick="deleteExpense(' +
-
                     i +
-
                     ')">' +
-
                     'Delete' +
-
                     '</button>';
 
             }
@@ -1214,7 +1189,7 @@
         }
 
 
-        /* UPDATE CHART */
+        /* UPDATE COLUMN CHART */
 
         function updateChart()
         {
@@ -1240,54 +1215,43 @@
             {
 
                 if(
-                    expenses[i].category ===
-                    "Food"
+                    expenses[i].category === "Food"
                 )
                 {
-                    food +=
-                        expenses[i].amount;
+                    food += expenses[i].amount;
                 }
 
                 else if(
-                    expenses[i].category ===
-                    "Travel"
+                    expenses[i].category === "Travel"
                 )
                 {
-                    travel +=
-                        expenses[i].amount;
+                    travel += expenses[i].amount;
                 }
 
                 else if(
-                    expenses[i].category ===
-                    "Education"
+                    expenses[i].category === "Education"
                 )
                 {
-                    education +=
-                        expenses[i].amount;
+                    education += expenses[i].amount;
                 }
 
                 else if(
-                    expenses[i].category ===
-                    "Shopping"
+                    expenses[i].category === "Shopping"
                 )
                 {
-                    shopping +=
-                        expenses[i].amount;
+                    shopping += expenses[i].amount;
                 }
 
                 else if(
-                    expenses[i].category ===
-                    "Entertainment"
+                    expenses[i].category === "Entertainment"
                 )
                 {
-                    entertainment +=
-                        expenses[i].amount;
+                    entertainment += expenses[i].amount;
                 }
 
                 else
                 {
-                    other +=
-                        expenses[i].amount;
+                    other += expenses[i].amount;
                 }
 
             }
@@ -1320,7 +1284,7 @@
                 new Chart(
                     ctx,
                     {
-                        type: "pie",
+                        type: "bar",
 
                         data:
                         {
@@ -1337,6 +1301,9 @@
                             datasets:
                             [
                                 {
+                                    label:
+                                        "Amount Spent",
+
                                     data:
                                         chartData,
 
@@ -1350,10 +1317,9 @@
                                         "#f97316"
                                     ],
 
-                                    borderColor:
-                                        "#10162b",
+                                    borderRadius: 8,
 
-                                    borderWidth: 4
+                                    borderWidth: 0
                                 }
                             ]
                         },
@@ -1365,26 +1331,51 @@
                             maintainAspectRatio:
                                 false,
 
-                            plugins:
+                            scales:
                             {
-                                legend:
+                                x:
                                 {
-                                    position:
-                                        "bottom",
+                                    ticks:
+                                    {
+                                        color:
+                                            "#cbd5e1"
+                                    },
 
-                                    labels:
+                                    grid:
+                                    {
+                                        display: false
+                                    }
+                                },
+
+                                y:
+                                {
+                                    beginAtZero: true,
+
+                                    ticks:
                                     {
                                         color:
                                             "#cbd5e1",
 
-                                        padding:
-                                            18,
-
-                                        font:
+                                        callback:
+                                        function(value)
                                         {
-                                            size: 13
+                                            return "₹" + value;
                                         }
+                                    },
+
+                                    grid:
+                                    {
+                                        color:
+                                            "#252d48"
                                     }
+                                }
+                            },
+
+                            plugins:
+                            {
+                                legend:
+                                {
+                                    display: false
                                 },
 
                                 title:
