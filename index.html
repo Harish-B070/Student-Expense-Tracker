@@ -5,6 +5,7 @@
     <title>Student Expense Tracker</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
     <style>
 
@@ -433,6 +434,14 @@
 
         /* RESPONSIVE */
 
+        @media (max-width: 1000px) {
+
+            .dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
         @media (max-width: 800px) {
 
             .navbar {
@@ -484,6 +493,7 @@
             table {
                 min-width: 650px;
             }
+
         }
 
     </style>
@@ -491,6 +501,7 @@
 </head>
 
 <body>
+
 
     <!-- NAVBAR -->
 
@@ -543,9 +554,11 @@
 
     <div class="container">
 
+
         <!-- DASHBOARD -->
 
         <div class="dashboard">
+
 
             <!-- MONTHLY BUDGET -->
 
@@ -592,7 +605,7 @@
             </div>
 
 
-            <!-- REMAINING -->
+            <!-- REMAINING BALANCE -->
 
             <div class="card">
 
@@ -606,12 +619,14 @@
 
             </div>
 
+
         </div>
 
 
         <!-- FORM + HISTORY -->
 
         <div class="content">
+
 
             <!-- ADD EXPENSE -->
 
@@ -756,6 +771,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -770,6 +786,7 @@
                 📊 Spending Analysis
             </h2>
 
+
             <div class="chart-container">
 
                 <canvas id="expenseChart"></canvas>
@@ -777,6 +794,7 @@
             </div>
 
         </div>
+
 
     </div>
 
@@ -843,7 +861,8 @@
 
             if(savedBudget !== null)
             {
-                budget = Number(savedBudget);
+                budget =
+                    Number(savedBudget);
             }
 
 
@@ -882,11 +901,13 @@
 
             if(budget <= 0)
             {
+
                 budget = 0;
 
                 updatePage();
 
                 return;
+
             }
 
 
@@ -965,13 +986,18 @@
             let expense =
             {
                 amount: amount,
+
                 category: category,
+
                 date: date,
+
                 description: description
             };
 
 
-            expenses.push(expense);
+            expenses.push(
+                expense
+            );
 
 
             saveData();
@@ -1062,10 +1088,14 @@
             }
 
 
+            /* REMAINING */
+
             let remaining =
                 budget -
                 totalSpent;
 
+
+            /* BUDGET */
 
             document.getElementById(
                 "budget"
@@ -1073,17 +1103,23 @@
                 "₹" + budget;
 
 
+            /* TOTAL */
+
             document.getElementById(
                 "total"
             ).innerHTML =
                 "₹" + totalSpent;
 
 
+            /* REMAINING */
+
             document.getElementById(
                 "remaining"
             ).innerHTML =
                 "₹" + remaining;
 
+
+            /* REMAINING COLOR */
 
             if(remaining < 0)
             {
@@ -1177,11 +1213,17 @@
                 row.insertCell(4).innerHTML =
 
                     '<button ' +
+
                     'class="delete-button" ' +
+
                     'onclick="deleteExpense(' +
+
                     i +
+
                     ')">' +
+
                     'Delete' +
+
                     '</button>';
 
             }
@@ -1189,7 +1231,7 @@
         }
 
 
-        /* UPDATE COLUMN CHART */
+        /* UPDATE CHART */
 
         function updateChart()
         {
@@ -1218,40 +1260,46 @@
                     expenses[i].category === "Food"
                 )
                 {
-                    food += expenses[i].amount;
+                    food +=
+                        expenses[i].amount;
                 }
 
                 else if(
                     expenses[i].category === "Travel"
                 )
                 {
-                    travel += expenses[i].amount;
+                    travel +=
+                        expenses[i].amount;
                 }
 
                 else if(
                     expenses[i].category === "Education"
                 )
                 {
-                    education += expenses[i].amount;
+                    education +=
+                        expenses[i].amount;
                 }
 
                 else if(
                     expenses[i].category === "Shopping"
                 )
                 {
-                    shopping += expenses[i].amount;
+                    shopping +=
+                        expenses[i].amount;
                 }
 
                 else if(
                     expenses[i].category === "Entertainment"
                 )
                 {
-                    entertainment += expenses[i].amount;
+                    entertainment +=
+                        expenses[i].amount;
                 }
 
                 else
                 {
-                    other += expenses[i].amount;
+                    other +=
+                        expenses[i].amount;
                 }
 
             }
@@ -1268,6 +1316,8 @@
             ];
 
 
+            /* REMOVE OLD CHART */
+
             if(expenseChart !== null)
             {
                 expenseChart.destroy();
@@ -1280,14 +1330,19 @@
                 );
 
 
+            /* CREATE BAR CHART */
+
             expenseChart =
                 new Chart(
                     ctx,
                     {
+
                         type: "bar",
+
 
                         data:
                         {
+
                             labels:
                             [
                                 "Food",
@@ -1298,88 +1353,169 @@
                                 "Other"
                             ],
 
+
                             datasets:
                             [
+
                                 {
+
                                     label:
                                         "Amount Spent",
+
 
                                     data:
                                         chartData,
 
+
                                     backgroundColor:
                                     [
+
                                         "#ec4899",
+
                                         "#3b82f6",
+
                                         "#f59e0b",
+
                                         "#14b8a6",
+
                                         "#8b5cf6",
+
                                         "#f97316"
+
                                     ],
+
 
                                     borderRadius: 8,
 
                                     borderWidth: 0
+
                                 }
+
                             ]
+
                         },
+
+
+                        plugins:
+                        [
+                            ChartDataLabels
+                        ],
+
 
                         options:
                         {
+
                             responsive: true,
 
                             maintainAspectRatio:
                                 false,
 
+
+                            animation:
+                            {
+
+                                duration: 1200,
+
+                                easing:
+                                    "easeOutQuart"
+
+                            },
+
+
+                            layout:
+                            {
+
+                                padding:
+                                {
+
+                                    top: 40
+
+                                }
+
+                            },
+
+
                             scales:
                             {
+
+                                /* X AXIS */
+
                                 x:
                                 {
-                                    ticks:
-                                    {
-                                        color:
-                                            "#cbd5e1"
-                                    },
-
-                                    grid:
-                                    {
-                                        display: false
-                                    }
-                                },
-
-                                y:
-                                {
-                                    beginAtZero: true,
 
                                     ticks:
                                     {
+
                                         color:
                                             "#cbd5e1",
 
-                                        callback:
-                                        function(value)
+                                        font:
                                         {
-                                            return "₹" + value;
+
+                                            size: 13
+
                                         }
+
                                     },
+
 
                                     grid:
                                     {
+
+                                        display: false
+
+                                    }
+
+                                },
+
+
+                                /* Y AXIS */
+
+                                y:
+                                {
+
+                                    beginAtZero: true,
+
+
+                                    /* REMOVE SIDE AMOUNT */
+
+                                    ticks:
+                                    {
+
+                                        display: false
+
+                                    },
+
+
+                                    /* KEEP GRID LINES */
+
+                                    grid:
+                                    {
+
                                         color:
                                             "#252d48"
+
                                     }
+
                                 }
+
                             },
+
 
                             plugins:
                             {
+
                                 legend:
                                 {
+
                                     display: false
+
                                 },
+
 
                                 title:
                                 {
+
                                     display: true,
 
                                     text:
@@ -1390,11 +1526,65 @@
 
                                     font:
                                     {
+
                                         size: 18
+
+                                    },
+
+                                    padding:
+                                    {
+
+                                        bottom: 20
+
                                     }
+
+                                },
+
+
+                                /* AMOUNT ABOVE BAR */
+
+                                datalabels:
+                                {
+
+                                    anchor:
+                                        "end",
+
+                                    align:
+                                        "top",
+
+                                    offset:
+                                        4,
+
+                                    color:
+                                        "#ffffff",
+
+                                    font:
+                                    {
+
+                                        weight:
+                                            "bold",
+
+                                        size:
+                                            14
+
+                                    },
+
+
+                                    formatter:
+                                    function(value)
+                                    {
+
+                                        return "₹" +
+                                            value;
+
+                                    }
+
                                 }
+
                             }
+
                         }
+
                     }
                 );
 
