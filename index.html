@@ -24,13 +24,14 @@
         /* NAVBAR */
 
         .navbar {
-            background: rgba(12, 16, 32, 0.95);
-            border-bottom: 1px solid #242b45;
-            color: white;
+            background: #0c1020;
+            border-bottom: 1px solid #252d48;
             padding: 18px 7%;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -39,7 +40,7 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #ffffff;
+            color: white;
         }
 
         .navbar a {
@@ -50,7 +51,7 @@
         }
 
         .navbar a:hover {
-            color: #8b5cf6;
+            color: #a78bfa;
         }
 
         /* HERO */
@@ -74,7 +75,7 @@
 
         .hero h1 {
             font-size: 38px;
-            color: #ffffff;
+            color: white;
             margin-bottom: 12px;
         }
 
@@ -110,6 +111,7 @@
 
             padding: 25px;
             border-radius: 18px;
+
             border: 1px solid #252d48;
 
             box-shadow:
@@ -143,7 +145,7 @@
             margin-top: 12px;
         }
 
-        /* BUDGET */
+        /* BUDGET INPUT */
 
         .budget-input {
             width: 100%;
@@ -166,6 +168,8 @@
             outline: none;
             border-color: #8b5cf6;
         }
+
+        /* BUDGET BUTTON */
 
         .budget-button {
             width: 100%;
@@ -219,6 +223,7 @@
 
             padding: 25px;
             border-radius: 18px;
+
             border: 1px solid #252d48;
 
             box-shadow:
@@ -261,13 +266,13 @@
             font-size: 14px;
         }
 
+        input::placeholder {
+            color: #68738d;
+        }
+
         select option {
             background: #10162b;
             color: white;
-        }
-
-        input::placeholder {
-            color: #68738d;
         }
 
         input:focus,
@@ -284,6 +289,8 @@
                     0.12
                 );
         }
+
+        /* ADD BUTTON */
 
         .add-button {
             width: 100%;
@@ -334,7 +341,10 @@
         th,
         td {
             padding: 14px;
-            border-bottom: 1px solid #252d48;
+
+            border-bottom:
+                1px solid #252d48;
+
             text-align: left;
         }
 
@@ -357,7 +367,7 @@
             background-color: #171e34;
         }
 
-        /* DELETE BUTTON */
+        /* DELETE */
 
         .delete-button {
             background: #ef4444;
@@ -386,7 +396,9 @@
         .chart-container {
             width: 100%;
             max-width: 600px;
+
             height: 420px;
+
             margin: auto;
         }
 
@@ -416,7 +428,8 @@
 
             padding: 22px;
 
-            border-top: 1px solid #242b45;
+            border-top:
+                1px solid #242b45;
         }
 
         /* RESPONSIVE */
@@ -425,7 +438,9 @@
 
             .navbar {
                 padding: 18px 4%;
+
                 flex-direction: column;
+
                 gap: 15px;
             }
 
@@ -467,11 +482,16 @@
                 padding: 20px;
             }
 
+            table {
+                min-width: 650px;
+            }
+
         }
 
     </style>
 
 </head>
+
 
 <body>
 
@@ -486,7 +506,9 @@
 
         <div>
 
-            <a href="#">Home</a>
+            <a href="#">
+                Home
+            </a>
 
             <a href="#expenses">
                 Expenses
@@ -514,8 +536,8 @@
         </h1>
 
         <p>
-            Track your daily spending and manage your
-            student budget smartly.
+            Track your daily spending and manage
+            your student budget smartly.
         </p>
 
     </div>
@@ -544,6 +566,7 @@
                     id="budgetInput"
                     class="budget-input"
                     placeholder="Enter your budget"
+                    min="1"
                 >
 
                 <button
@@ -589,7 +612,6 @@
 
             </div>
 
-
         </div>
 
 
@@ -615,6 +637,7 @@
                     type="number"
                     id="amount"
                     placeholder="Enter amount"
+                    min="1"
                 >
 
 
@@ -741,11 +764,10 @@
 
             </div>
 
-
         </div>
 
 
-        <!-- SPENDING ANALYSIS -->
+        <!-- ANALYSIS -->
 
         <div
             class="box chart-box"
@@ -765,7 +787,6 @@
 
         </div>
 
-
     </div>
 
 
@@ -781,8 +802,9 @@
         </h1>
 
         <p>
-            This website helps students track their daily
-            expenses and manage their monthly budget.
+            This website helps students track their
+            daily expenses and manage their
+            monthly budget.
         </p>
 
     </div>
@@ -802,6 +824,9 @@
     <!-- JAVASCRIPT -->
 
     <script>
+
+
+        /* STARTING VALUES */
 
         let budget = 0;
 
@@ -827,13 +852,14 @@
                 );
 
 
-            if(savedBudget != null)
+            if(savedBudget !== null)
             {
-                budget = Number(savedBudget);
+                budget =
+                    Number(savedBudget);
             }
 
 
-            if(savedExpenses != null)
+            if(savedExpenses !== null)
             {
                 expenses =
                     JSON.parse(savedExpenses);
@@ -856,30 +882,23 @@
                 ).value;
 
 
-            if(budgetValue == "")
+            if(budgetValue === "")
             {
-
-                alert(
-                    "Please enter your monthly budget."
-                );
-
                 return;
-
             }
 
 
-            budget = Number(budgetValue);
+            budget =
+                Number(budgetValue);
 
 
             if(budget <= 0)
             {
+                budget = 0;
 
-                alert(
-                    "Budget must be greater than 0."
-                );
+                updatePage();
 
                 return;
-
             }
 
 
@@ -896,11 +915,6 @@
 
             updatePage();
 
-
-            alert(
-                "Monthly budget updated successfully!"
-            );
-
         }
 
 
@@ -909,15 +923,9 @@
         function addExpense()
         {
 
-            if(budget == 0)
+            if(budget === 0)
             {
-
-                alert(
-                    "Please set your monthly budget first."
-                );
-
                 return;
-
             }
 
 
@@ -946,34 +954,23 @@
 
 
             if(
-                amount == "" ||
-                category == "" ||
-                date == "" ||
-                description == ""
+                amount === "" ||
+                category === "" ||
+                date === "" ||
+                description === ""
             )
             {
-
-                alert(
-                    "Please enter all expense details."
-                );
-
                 return;
-
             }
 
 
-            amount = Number(amount);
+            amount =
+                Number(amount);
 
 
             if(amount <= 0)
             {
-
-                alert(
-                    "Amount must be greater than 0."
-                );
-
                 return;
-
             }
 
 
@@ -1017,11 +1014,6 @@
                 "description"
             ).value = "";
 
-
-            alert(
-                "Expense added successfully!"
-            );
-
         }
 
 
@@ -1030,7 +1022,10 @@
         function deleteExpense(index)
         {
 
-            expenses.splice(index, 1);
+            expenses.splice(
+                index,
+                1
+            );
 
 
             saveData();
@@ -1054,7 +1049,9 @@
 
             localStorage.setItem(
                 "studentExpenses",
-                JSON.stringify(expenses)
+                JSON.stringify(
+                    expenses
+                )
             );
 
         }
@@ -1083,7 +1080,8 @@
 
 
             let remaining =
-                budget - totalSpent;
+                budget -
+                totalSpent;
 
 
             document.getElementById(
@@ -1127,6 +1125,7 @@
 
             updateTable();
 
+
             updateChart();
 
         }
@@ -1146,14 +1145,19 @@
             table.innerHTML = "";
 
 
-            if(expenses.length == 0)
+            if(expenses.length === 0)
             {
 
                 table.innerHTML =
                     '<tr>' +
-                    '<td colspan="5" class="empty-message">' +
+
+                    '<td colspan="5" ' +
+                    'class="empty-message">' +
+
                     'No expenses added yet.' +
+
                     '</td>' +
+
                     '</tr>';
 
                 return;
@@ -1190,11 +1194,19 @@
 
 
                 row.insertCell(4).innerHTML =
-                    '<button class="delete-button" ' +
+
+                    '<button ' +
+
+                    'class="delete-button" ' +
+
                     'onclick="deleteExpense(' +
+
                     i +
+
                     ')">' +
+
                     'Delete' +
+
                     '</button>';
 
             }
@@ -1202,7 +1214,7 @@
         }
 
 
-        /* UPDATE PIE CHART */
+        /* UPDATE CHART */
 
         function updateChart()
         {
@@ -1228,7 +1240,7 @@
             {
 
                 if(
-                    expenses[i].category ==
+                    expenses[i].category ===
                     "Food"
                 )
                 {
@@ -1237,7 +1249,7 @@
                 }
 
                 else if(
-                    expenses[i].category ==
+                    expenses[i].category ===
                     "Travel"
                 )
                 {
@@ -1246,7 +1258,7 @@
                 }
 
                 else if(
-                    expenses[i].category ==
+                    expenses[i].category ===
                     "Education"
                 )
                 {
@@ -1255,7 +1267,7 @@
                 }
 
                 else if(
-                    expenses[i].category ==
+                    expenses[i].category ===
                     "Shopping"
                 )
                 {
@@ -1264,7 +1276,7 @@
                 }
 
                 else if(
-                    expenses[i].category ==
+                    expenses[i].category ===
                     "Entertainment"
                 )
                 {
@@ -1292,7 +1304,7 @@
             ];
 
 
-            if(expenseChart != null)
+            if(expenseChart !== null)
             {
                 expenseChart.destroy();
             }
@@ -1325,7 +1337,8 @@
                             datasets:
                             [
                                 {
-                                    data: chartData,
+                                    data:
+                                        chartData,
 
                                     backgroundColor:
                                     [
@@ -1349,19 +1362,23 @@
                         {
                             responsive: true,
 
-                            maintainAspectRatio: false,
+                            maintainAspectRatio:
+                                false,
 
                             plugins:
                             {
                                 legend:
                                 {
-                                    position: "bottom",
+                                    position:
+                                        "bottom",
 
                                     labels:
                                     {
-                                        color: "#cbd5e1",
+                                        color:
+                                            "#cbd5e1",
 
-                                        padding: 18,
+                                        padding:
+                                            18,
 
                                         font:
                                         {
@@ -1377,16 +1394,12 @@
                                     text:
                                         "Where Your Money Is Spent",
 
-                                    color: "#ffffff",
+                                    color:
+                                        "#ffffff",
 
                                     font:
                                     {
                                         size: 18
-                                    },
-
-                                    padding:
-                                    {
-                                        bottom: 20
                                     }
                                 }
                             }
